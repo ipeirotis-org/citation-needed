@@ -10,7 +10,7 @@ ineffective or that the complete skill is reliable.
 ## What actually ran
 
 The user ran published commit
-[`919f9ec`](https://github.com/ipeirotis/citation-needed/commit/919f9ec91deed4780f2fde0f46e585206e8757b0)
+[`919f9ec`](https://github.com/ipeirotis-org/citation-needed/commit/919f9ec91deed4780f2fde0f46e585206e8757b0)
 locally and supplied the result bundle. This was the Anthropic Messages API
 harness with restricted file tools, **not Claude Code**. The requested and
 returned model ID was `claude-haiku-5-5`. The same skill was used in both
@@ -155,11 +155,27 @@ pooled with unrun v2 conditions.
 Post-review verification passed 72 offline tests and 1,292 dataset checks.
 These validate the code and fixtures; they are separate from the agent scores.
 
-Recommended next steps are to test harder, independently reviewed quotation
-cases; assess the ledger with usable location tools; and preregister a fresh
-paired run with an adequate output budget and recorded harness settings. The
-present dataset is at ceiling for completed quotation judgments, so repeating
-the same easy cases would give limited evidence about accuracy improvements.
+## Recommendation
+
+**Skip mandatory checker calls for every quotation in this workflow.** Both
+conditions scored 66/66 on the 11 completed pairs. Enabling the checker added
+35.7% input tokens, 22.7% output tokens and a median 17.1 seconds per pair.
+The marked quotations and supplied source text made this a narrow test. These
+results leave the benefit on harder cases open.
+
+Keep the script for a possible final evidence check. After drafting an audit,
+compare the evidence quotes the model wrote with independently retained source
+text in one batch outside the model's tool loop. This could flag wording
+mismatches without another model call. A quotes-only archive made from the
+same evidence cannot verify it. Whether a passage is misleading in context or
+supports the claim still needs separate judgment. This final-check workflow
+has yet to be evaluated.
+
+Prioritize the ledger: 38 of the 39 completed runs failed its requirements
+after regrading. Test how many failures remain with the new line numbers in
+the file tools. Defer another paid run on the same quotation cases; if the
+checker is revisited, use independently reviewed evidence quotes with actual
+misquotations and valid controls.
 
 ## Reproduce and inspect
 
